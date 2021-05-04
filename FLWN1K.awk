@@ -1,4 +1,3 @@
-BEGIN {
 $1 ~ /^[[:alpha:]]/ { f[$1] = $2 }
 
 $1 == "DATASET UNSTRUCTURED_GRID" {
@@ -15,7 +14,7 @@ $1 == "DATASET UNSTRUCTURED_GRID" {
 
 block == "DATASET UNSTRUCTURED_GRID" {
     $1 = ""
-    printf "%s", 1++
+    printf "%s"
     sub(/^[[:space:]]+/,"")
     print
 }
@@ -27,12 +26,10 @@ $1 == "CELLS" {
 }
 
 block == "CELLS" {
-    printf "%s", 1++
+    printf "%s"
     
     for (i=2; i<=NF; i++) {
         printf " %s", $i + 1
     }
     print ""
-}
-
 }
